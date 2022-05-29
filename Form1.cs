@@ -2,15 +2,21 @@ namespace WinFormsApp1
 {
     public enum Operation
     {
-        Magiclvlknight,  // activities to be enumerated for every profession
-        Magiclvlpaladin,
-        Magiclvldruid,
-        Magiclvl,sorcerer
+        none,
+        professionRatioDS,  // activities to be enumerated for every profession
+        professionRatioP,
+        professionRatioK,
+
     }
     public partial class Form1 : Form
     {
-        private string _firstValue; //started skill
-        private string _secondValue; //ended skill
+        private string _skillLevelTarget; //started skill
+        private Operation _currentOperation = Operation.none;
+        private string _secondValue;
+        private string _skillLevel;
+        private string _result; 
+
+        //ended skill
         //private Operation _currentOperation = Operation.None;
 
         private bool _isTheResultOnTheScreen;
@@ -18,108 +24,300 @@ namespace WinFormsApp1
         {
 
             InitializeComponent();
-            tb3Screen.Text = "0";
+            tboxResults.Text = null;
         }
 
-
-     
- 
-        private void lblDoubleView(object sender, EventArgs e)
-        {
-
-        }
-        private void label3_Click(object sender, EventArgs e)
+        //GENERAL WINDOW
+        private void Form(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        //LABELS
+
+        private void lbProfessionText(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            var clickedValue = (sender as TextBox).Text;
-        }
-
-        private void label2_Click(object sender, EventArgs e)
+        private void lbLevelText(object sender, EventArgs e)
         {
 
         }
 
-        //Profession
-        private void cboProState(object sender, EventArgs e) //combobox state profession
+        private void lbWeaponText(object sender, EventArgs e)
         {
-            lblValue.Text = cboState.Text;
+
         }
 
-        //Skills
-        private void cboSkillState(object sender, EventArgs e) //combobox state skill
+        private void lbSkillLevelText(object sender, EventArgs e)
         {
-            lblValue2.Text = cboState2.Text;
+
         }
 
-        //Measures - œrodki
-        private void cboMeasuresState(object sender, EventArgs e) 
+        private void lbPercOfActSkillLevelText(object sender, EventArgs e)
         {
-            lblValue3.Text = cboState3.Text;
-        }
-        
-        //double exp/skill event
-        private void cboDoubleState(object sender, EventArgs e)
-        {
-            lblValue4.Text = cboState4.Text;
+
         }
 
-
-
-
-
-        private void tb1ScreenEnter(object sender, EventArgs e)
+        private void lbSkillLevelTargetText(object sender, EventArgs e)
         {
-            if (tb1Screen.Text == "your skill")
-            {
-                tb1Screen.Text = "";
-                tb1Screen.ForeColor = Color.Black;
-            }
+
+        }
+        private void lbPercOfTarSkillLevelText(object sender, EventArgs e)
+        {
+
         }
 
-        private void tb1ScreenLeave(object sender, EventArgs e)
+        private void lbTrainingItemText(object sender, EventArgs e)
         {
-            if (tb1Screen.Text == "")
-            {
-                tb1Screen.Text = "your skill";
 
-                tb1Screen.ForeColor = Color.Silver;
-            }
+        }
+
+        private void lbTrainingPotionText(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbRingText(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbAmuletText(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbprogressBarText(object sender, EventArgs e)
+        {
+
+        }
+
+        //text labels
+
+        private void lbText1Text(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbText2Text(object sender, EventArgs e)
+        {
+
+        }
+        private void lbText3Text(object sender, EventArgs e)
+        {
+
+        }
+        private void lbResultsText(object sender, EventArgs e)
+        {
+
+        }
+
+        //COMBO BOXES
+
+        private void cboxProfessionChoice(object sender, EventArgs e)
+        {
+            var selectedValue = (sender as ComboBox).SelectedItem;
+            tboxResults.Text += selectedValue;
+        }
+
+        private void cboxWeaponChoice(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxTrainingItemChoice(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxTrainingPotionChoice(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxRingChoice(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxAmuletChoice(object sender, EventArgs e)
+        {
+
+        }
+
+        //TEXT BOXES
+
+        private void tboxLevelAdd(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxSkillLevelAdd(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxPercOfActSkillLevelAdd(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxSkillLevelTargetAdd(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxPercOfTargetSkillAdd(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBarLoad(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxResultsView(object sender, EventArgs e)
+        {
+            _skillLevelTarget = tboxSkillLevel.Text;
+
+            //tb1Screen.Text = sender.ToString();
+        }
+
+        //CHECK BOXES
+
+        private void checkBoxFoodClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxDoubleSkillClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxExeDummyClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxPromotionClick(object sender, EventArgs e)
+        {
+
+        }
+
+        //BUTTONS
+
+        private void buttonClearClick(object sender, EventArgs e)
+        {
+            cboxProfession.Text = null;
+            tboxLevel.Text = "";
+            cboxWeapon.Text = null;
+            tboxSkillLevel.Text = "";
+            tboxPercOfActSkillLevel.Text = "";
+
+            tboxSkillLevelTarget.Text = "";
+            tboxPercOfTargetSkill.Text = "";
+
+            cboxTrainingItem.Text = null;
+            cboxTrainingPotion.Text = null;
+            cboxRing.Text = null;
+            cboxAmulet.Text = null;
+
+            checkBoxFood.Checked = false;
+            checkBoxDoubleSkill.Checked = false;
+            checkBoxExeDummy.Checked = false;
+            checkBoxPromotion.Checked = false;
+
+            tboxResults.Text = "";
+        }
+
+        private void buttonExitClick(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tboxPercOfTargetSkill_TextChanged(object sender, EventArgs e)
+        {
+             
+            //var clickedValue = (sender as TextBox).Text;
+
+
         }
 
         private void tb2ScreenEnter(object sender, EventArgs e)
         {
-            if (tb2Screen.Text == "skill you want")
+            if (tboxSkillLevelTarget.Text == "skill you want")
             {
-                tb2Screen.Text = "";
-                tb2Screen.ForeColor = Color.Black;
+                tboxSkillLevelTarget.Text = "";
+                tboxSkillLevelTarget.ForeColor = Color.Black;
             }
         }
 
         private void tb2ScreenLeave(object sender, EventArgs e)
         {
-            if (tb2Screen.Text == "")
+            if (tboxSkillLevelTarget.Text == "")
             {
-                tb2Screen.Text = "skill you want";
-                tb2Screen.ForeColor = Color.Silver;
+                tboxSkillLevelTarget.Text = "skill you want";
+                tboxSkillLevelTarget.ForeColor = Color.Silver;
             }
         }
 
-        private void tb3Screen_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        //przycisk calculate
         private void OnBtnResultClick(object sender, EventArgs e)
         {
-            if (cboState2.Text == "Sword Fighting")
+            string operation = cboxProfession.Text;
+            _currentOperation = operation switch
+            {
+                "Knight" => Operation.professionRatioK,
+                "Paladin" => Operation.professionRatioP,
+                "Sorcerer" => Operation.professionRatioDS,
+                "Druid" => Operation.professionRatioDS,
+            };
+
+            _skillLevelTarget = tboxSkillLevel.Text; //skill lvl
+            /* _secondValue = tboxSkillLevelTarget.Text; *////target skill
+            _skillLevel = tboxSkillLevelTarget.Text;
+
+            var firstNumber = double.Parse(_skillLevelTarget);
+            var secondNumber = double.Parse(_skillLevel);
+            var yml = double.Parse(_skillLevel);
+            var potêga = double.Parse(_skillLevel);
+            var potêga1 = double.Parse(_skillLevel);
+            var potêga2 = double.Parse(_skillLevel);
+
+
+            var result = Calculate(potêga, potêga1, potêga2, yml);
+            double sum = firstNumber + secondNumber;
+            tboxResults.Text = result.ToString();
+
+            //var operation = (sender as ComboBox).Text; //SelectedItem
+
+            //tboxResults.Text += $" {operation} ";
+
+            //_currentOperation = operation switch
+            //{
+            //    "knight" => Operation.professionRatioK,
+            //    "Paladin" => Operation.professionRatioP,
+            //    "Sorcerer" => Operation.professionRatioDS,
+            //    "Druid" => Operation.professionRatioDS,
+            //    _ => Operation.none
+            //};
+
+            //var firstNumber = double.Parse(_skillLevelTarget);
+            //var secondNumber = double.Parse(_secondValue);
+            //var result = Calculate(firstNumber, secondNumber);
+            //int no1, no2, sum;
+            //no1 = Convert.ToInt32(tb1Screen.Text);
+            //no2 = Convert.ToInt32(tboxSkillLevelTarget.Text);
+            //sum = no1 + no2;
+            //tboxResults.Text = sum.ToString();
+
+
+            //Skills
+            if (cboxWeapon.Text == "Sword Fighting")
             {
                 picBox5.Visible = true;
                 picBox6.Visible = false;
@@ -130,7 +328,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Club Fighting")
+            else if (cboxWeapon.Text == "Club Fighting")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = true;
@@ -141,7 +339,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Distance Fighting")
+            else if (cboxWeapon.Text == "Distance Fighting")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -152,7 +350,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Magic Level")
+            else if (cboxWeapon.Text == "Magic Level")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -163,7 +361,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Fist Fighting")
+            else if (cboxWeapon.Text == "Fist Fighting")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -174,7 +372,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Axe Fighting")
+            else if (cboxWeapon.Text == "Axe Fighting")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -185,7 +383,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Fishing")
+            else if (cboxWeapon.Text == "Fishing")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -196,7 +394,7 @@ namespace WinFormsApp1
                 picBox11.Visible = true;
                 picBox12.Visible = false;
             }
-            else if (cboState2.Text == "Shielding")
+            else if (cboxWeapon.Text == "Shielding")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -207,7 +405,7 @@ namespace WinFormsApp1
                 picBox11.Visible = false;
                 picBox12.Visible = true;
             }
-            else if (cboState2.Text == "None")
+            else if (cboxWeapon.Text == "None")
             {
                 picBox5.Visible = false;
                 picBox6.Visible = false;
@@ -219,30 +417,29 @@ namespace WinFormsApp1
                 picBox12.Visible = false;
             }
 
-            //// 
-
-            if (cboState.Text == "Knight")
+            //Profession
+            if (cboxProfession.Text == "Knight")
             {
                 picBox1.Visible = true;
                 picBox2.Visible = false;
                 picBox3.Visible = false;
                 picBox4.Visible = false;
             }
-            else if (cboState.Text == "Paladin")
+            else if (cboxProfession.Text == "Paladin")
             {
                 picBox1.Visible = false;
                 picBox2.Visible = true;
                 picBox3.Visible = false;
                 picBox4.Visible = false;
             }
-            else if (cboState.Text == "Druid")
+            else if (cboxProfession.Text == "Druid")
             {
                 picBox1.Visible = false;
                 picBox2.Visible = false;
                 picBox3.Visible = true;
                 picBox4.Visible = false;
             }
-            else if (cboState.Text == "Sorcerer")
+            else if (cboxProfession.Text == "Sorcerer")
             {
                 picBox1.Visible = false;
                 picBox2.Visible = false;
@@ -256,73 +453,73 @@ namespace WinFormsApp1
                 picBox3.Visible = false;
                 picBox4.Visible = false;
             }
-            //////
-            ///
-            if (cboState3.Text == "Mana Potion")
+
+            //Potions
+            if (cboxTrainingPotion.Text == "Mana Potion")
             {
                 picBox13.Visible = true;
                 picBox14.Visible = false;
                 picBox15.Visible = false;
                 picBox16.Visible = false;
             }
-            else if (cboState3.Text == "Strong Mana Potion")
+            else if (cboxTrainingPotion.Text == "Strong Mana Potion")
             {
                 picBox13.Visible = false;
                 picBox14.Visible = true;
                 picBox15.Visible = false;
                 picBox16.Visible = false;
             }
-            else if (cboState3.Text == "Great Mana Potion")
+            else if (cboxTrainingPotion.Text == "Great Mana Potion")
             {
                 picBox13.Visible = false;
                 picBox14.Visible = false;
                 picBox15.Visible = true;
                 picBox16.Visible = false;
             }
-            else if (cboState3.Text == "Ultimate Mana Potion")
+            else if (cboxTrainingPotion.Text == "Ultimate Mana Potion")
             {
                 picBox13.Visible = false;
                 picBox14.Visible = false;
                 picBox15.Visible = false;
                 picBox16.Visible = true;
             }
-            else if (cboState3.Text == "None")
+            else if (cboxTrainingPotion.Text == "None")
             {
                 picBox13.Visible = false;
                 picBox14.Visible = false;
                 picBox15.Visible = false;
                 picBox16.Visible = false;
             }
-            ////
-            ///
-            if (cboState6.Text == "Life Ring")
+
+            //Rings
+            if (cboxRing.Text == "Life Ring")
             {
                 picBox18.Visible = true;
                 picBox19.Visible = false;
             }
-            else if (cboState6.Text == "Ring of Healing")
+            else if (cboxRing.Text == "Ring of Healing")
             {
                 picBox18.Visible = false;
                 picBox19.Visible = true;
             }
-            else if (cboState6.Text == "None")
+            else if (cboxRing.Text == "None")
             {
                 picBox18.Visible = false;
                 picBox19.Visible = false;
             }
-            ////
-            ///
-            if (cboState4.Text == "Collar of Green Plasma")
+
+            //Amulets
+            if (cboxAmulet.Text == "Collar of Green Plasma")
             {
                 picBox22.Visible = true;
             }
-            if (cboState4.Text == "None")
+            if (cboxAmulet.Text == "None")
             {
                 picBox22.Visible = false;
             }
-            ////
-            ///
-            if (cboState5.Text == "Training Axe") //24
+
+            //Training items
+            if (cboxTrainingItem.Text == "Training Axe")
             {
                 picBox23.Visible = true;
                 picBox24.Visible = false;
@@ -349,7 +546,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Training Bow")
+            else if (cboxTrainingItem.Text == "Training Bow")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = true;
@@ -376,7 +573,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Training Club")
+            else if (cboxTrainingItem.Text == "Training Club")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -403,7 +600,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Training Rod")
+            else if (cboxTrainingItem.Text == "Training Rod")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -430,7 +627,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Training Sword")
+            else if (cboxTrainingItem.Text == "Training Sword")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -457,7 +654,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Training Wand")
+            else if (cboxTrainingItem.Text == "Training Wand")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -484,7 +681,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Exercise Axe")
+            else if (cboxTrainingItem.Text == "Exercise Axe")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -511,7 +708,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Exercise Bow")
+            else if (cboxTrainingItem.Text == "Exercise Bow")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -538,7 +735,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Exercise Club")
+            else if (cboxTrainingItem.Text == "Exercise Club")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -565,7 +762,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Exercise Rod")
+            else if (cboxTrainingItem.Text == "Exercise Rod")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -592,7 +789,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Exercise Sword")
+            else if (cboxTrainingItem.Text == "Exercise Sword")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -619,7 +816,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Exercise Wand")
+            else if (cboxTrainingItem.Text == "Exercise Wand")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -646,7 +843,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Durable Exercise Axe")
+            else if (cboxTrainingItem.Text == "Durable Exercise Axe")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -673,7 +870,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Durable Exercise Bow")
+            else if (cboxTrainingItem.Text == "Durable Exercise Bow")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -700,7 +897,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Durable Exercise Club")
+            else if (cboxTrainingItem.Text == "Durable Exercise Club")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -727,7 +924,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Durable Exercise Rod")
+            else if (cboxTrainingItem.Text == "Durable Exercise Rod")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -754,7 +951,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Durable Exercise Sword")
+            else if (cboxTrainingItem.Text == "Durable Exercise Sword")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -781,7 +978,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Durable Exercise Wand")
+            else if (cboxTrainingItem.Text == "Durable Exercise Wand")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -808,7 +1005,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Lasting Exercise Axe")
+            else if (cboxTrainingItem.Text == "Lasting Exercise Axe")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -835,7 +1032,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Lasting Exercise Bow")
+            else if (cboxTrainingItem.Text == "Lasting Exercise Bow")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -862,7 +1059,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Lasting Exercise Club")
+            else if (cboxTrainingItem.Text == "Lasting Exercise Club")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -889,7 +1086,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Lasting Exercise Rod")
+            else if (cboxTrainingItem.Text == "Lasting Exercise Rod")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -916,7 +1113,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Lasting Exercise Sword")
+            else if (cboxTrainingItem.Text == "Lasting Exercise Sword")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -943,7 +1140,7 @@ namespace WinFormsApp1
                 picBox45.Visible = true;
                 picBox46.Visible = false;
             }
-            else if (cboState5.Text == "Lasting Exercise Wand")
+            else if (cboxTrainingItem.Text == "Lasting Exercise Wand")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -970,7 +1167,7 @@ namespace WinFormsApp1
                 picBox45.Visible = false;
                 picBox46.Visible = true;
             }
-            else if (cboState5.Text == "None")
+            else if (cboxTrainingItem.Text == "None")
             {
                 picBox23.Visible = false;
                 picBox24.Visible = false;
@@ -998,7 +1195,7 @@ namespace WinFormsApp1
                 picBox46.Visible = false;
             }
             //Food
-            if (checkBox1.Checked)
+            if (checkBoxFood.Checked)
             {
                 picBox20.Visible = true;
             }
@@ -1007,7 +1204,7 @@ namespace WinFormsApp1
                 picBox20.Visible = false;
             }
             //Double skill
-            if (checkBox2.Checked)
+            if (checkBoxDoubleSkill.Checked)
             {
                 picBox17.Visible = true;
             }
@@ -1016,7 +1213,7 @@ namespace WinFormsApp1
                 picBox17.Visible = false;
             }
             //Exercise Dummy
-            if (checkBox3.Checked)
+            if (checkBoxExeDummy.Checked)
             {
                 picBox21.Visible = true;
             }
@@ -1025,7 +1222,7 @@ namespace WinFormsApp1
                 picBox21.Visible = false;
             }
             //Promotion
-            if (checkBox4.Checked)
+            if (checkBoxPromotion.Checked)
             {
                 picBox47.Visible = true;
             }
@@ -1033,52 +1230,47 @@ namespace WinFormsApp1
             {
                 picBox47.Visible = false;
             }
-            //if (_currentOperation == Operation.None)
-            //    return;
-
-            //var firstNumber = double.Parse(_firstValue);
-            //var secondNumber = double.Parse(_secondValue);
-
-            //var result = Calculate(firstNumber, secondNumber);
-
-            //tb3Screen.Text = result.ToString();
-            //_secondValue = String.Empty;
-        }
-        //private double Calculate(double firstNumber, double secondNumber)
-        //{
-        //    switch (_currentOperation)
-        //    {
-        //        case Operation.None:
-        //            return firstNumber;
-
-        //        case Operation.Subtraction:
-        //            return secondNumber - firstNumber;
-        //    }
-        //    return 0;
-        //}
-
-        private void OnBtnClearClick(object sender, EventArgs e)
-        {
-            tb1Screen.Text = "";
-            tb2Screen.Text = "";
-            tb3Screen.Text = "";
-            //_firstValue = String.Empty;
-            //_secondValue = String.Empty;
-            cboState.Text = null;
-            cboState2.Text = null;
-            cboState3.Text = null;
-            cboState4.Text = null;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private double Calculate(double potêga, double potêga1, double potêga2, double yml)
         {
 
+            double constantnr = 1.600;
+            //double result;
+
+            switch (_currentOperation)
+            {
+                //case Operation.none:
+                //    result = firstNumber;
+                //    return result;
+
+                case Operation.professionRatioK:
+
+                    double professionRatioK = 1.6;
+                    potêga = Math.Pow(professionRatioK, yml - 1);
+                    //result = constantnr * potêga;
+                    //return result;
+                    return constantnr * potêga;
+
+                case Operation.professionRatioP:
+
+                    double professionRatioP = 1.4;
+                    potêga1 = Math.Pow(professionRatioP, yml - 1);
+                    //result =  constantnr * potêga1;
+                    //return result;
+                    return constantnr * potêga1;
+
+                case Operation.professionRatioDS:
+
+                    double professionRatioDS = 1.1;
+                    potêga2 = Math.Pow(professionRatioDS, yml - 1);
+                    //result = constantnr * potêga2;
+                    //return result;
+                    return constantnr * potêga2;
+            }
+            return 0;
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -1090,22 +1282,12 @@ namespace WinFormsApp1
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void lbAmulet_Click(object sender, EventArgs e)
         {
 
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
         {
 
         }
@@ -1116,6 +1298,12 @@ namespace WinFormsApp1
         }
 
         private void lblValue2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void lbText1_Click(object sender, EventArgs e)
         {
 
         }
